@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arkham Horror - Helper</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<style>
+    .pdfobject-container { height: 1000px;}
+</style>
+<body class="bg-dark">
+<div class="container">
+    <div class="row mt-5 mb-5">
+        <div class="col">
+            <div id="mythos">
+                <div class="card text-bg-dark border-light">
+                    <h5 class="card-header"> I. Fase do Mythos </h5>
+                    <button class="btn btn-dark" onclick="next('manutencao')"><<</button>
+                    <button class="btn btn-dark" onclick="next('investigacao')">>></button>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckboxStretched">
+                                    <label class="form-check-label stretched-link" for="firstCheckboxStretched">1. Coloque 1 perdição sobre a agenda</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="" id="secondCheckboxStretched">
+                                    <label class="form-check-label stretched-link" for="secondCheckboxStretched">2. Avance a agenda se o limiar de perdição for atingido</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckboxStretched">
+                                    <label class="form-check-label stretched-link" for="thirdCheckboxStretched">3. Cada investigador compra 1 carta do topo do baralho de encontros</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <p>* pule durante a primeira rodada</p>
+                    </div>
+                </div>
+            </div>
+            <div id="investigacao">
+                <div class="card text-bg-dark border-light">
+                    <h5 class="card-header"> II. Fase de investigação </h5>
+                    <button class="btn btn-dark" onclick="next('mythos')"><<</button>
+                    <button class="btn btn-dark" onclick="next('inimigos')"> >></button>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="" id="invetigador-check">
+                                    <label class="form-check-label stretched-link" for="invetigador-check">1. Cada investigador joga um turno, realizando 3 ações</label>
+                                </li>
+                            </ul>
+                            <p class="mt-2">
+                                As ações que podem ser realizadas são:
+                            <ul>
+                                <li>Comprar 1 <strong>carta</strong> ou ganhar 1 <strong>recurso</strong></li>
+                                <li><strong>Jogar</strong> uma carta de evento ou de ativo da mão (cartas velozes não custam ações para ser jogadas)</li>
+                                <li><strong>Ativar</strong> uma habilidade (símbolo >>) de uma carta</li>
+                                <li><strong>Mover-se</strong> para um local conectado</li>
+                                <li><strong>Lutar</strong> ou engajar com um inimigo em seu local</li>
+                                <li>Tentar <strong>evadir</strong> um inimigo engajado com você</li>
+                            </ul>
+
+                            Habilidades de carta (simbolo raio) ou (simbolo uma volta) <strong>não custam ações</strong> para serem ativadas<br>
+                            <br><p>Se você estiver engajado com um inimigo e gastar uma ação para fazer qualquer coisa diferente de <strong>Lutar</strong>, <strong>Evadir</strong>, ou ativar uma habilidade de <strong>Negociata</strong>, ou de <strong>Renúncia</strong>, cada inimigo engajado com você realiza um ataque de oportunidade</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="inimigos">
+                <div class="card text-bg-dark border-light">
+                    <h5 class="card-header"> III. Fase dos inimigos </h5>
+                    <button class="btn btn-dark" onclick="next('investigacao')"><<</button>
+                    <button class="btn btn-dark" onclick="next('manutencao')"> >></button>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="" id="inimigos-check">
+                                    <label class="form-check-label stretched-link" for="inimigos-check">1. Inimigos com a palavra-chave "Caçador" se movem em direção ao investigador mais próximo</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="" id="inimigos-check-2">
+                                    <label class="form-check-label stretched-link" for="inimigos-check-2">2. Cada inimigo engajado ataca, se possivel</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="manutencao">
+                <div class="card text-bg-dark border-light">
+                    <h5 class="card-header"> IV. Fase de manutenção </h5>
+                    <button class="btn btn-dark" onclick="next('inimigos')"><<</button>
+                    <button class="btn btn-dark" onclick="next('mythos')"> >></button>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="" id="manutencao-check">
+                                    <label class="form-check-label stretched-link" for="manutencao-check">1. Reinicie as ações (vire as mini cartas)</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="" id="manutencao-check-2">
+                                    <label class="form-check-label stretched-link" for="manutencao-check-2">2. Prepare todas as cartas esgotadas</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="" id="manutencao-check-3">
+                                    <label class="form-check-label stretched-link" for="manutencao-check-3">3. Cada investigador compra 1 carta e ganha 1 recurso</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="" id="manutencao-check-4">
+                                    <label class="form-check-label stretched-link" for="manutencao-check-4">4. Cada investigador verifica o tamanho da mão ( descarta até ficar com 8 cartas)</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    <div class="row">
+        <div class="col">
+            <div id="my-pdf"></div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://unpkg.com/pdfobject"></script>
+<script>PDFObject.embed("contents/reference-indice.pdf", "#my-pdf");</script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+
+    elements = [
+        document.getElementById("mythos"),
+        document.getElementById("investigacao"),
+        document.getElementById("inimigos"),
+        document.getElementById("manutencao")
+    ];
+
+    function next(elementName){
+        let element = document.getElementById(elementName);
+        show(element);
+    }
+    function show(element){
+        elements.forEach(function(element){
+            hide(element)
+        })
+        element.classList.remove("d-none");
+    }
+    function hide(element){
+        element.classList.add("d-none");
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        show(document.getElementById("mythos"));
+    });
+</script>
+</body>
+</html>
