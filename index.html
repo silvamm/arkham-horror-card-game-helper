@@ -7,16 +7,22 @@
 </head>
 <style>
     .pdfobject-container { height: 1000px;}
+    .btn-group {
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
 </style>
 <body class="bg-dark">
 <div class="container">
     <div class="row mt-5 mb-5">
         <div class="col">
             <div id="mythos">
-                <div class="card text-bg-dark border-light">
-                    <h5 class="card-header"> I. Fase do Mythos </h5>
-                    <button class="btn btn-dark" onclick="next('manutencao')"><<</button>
-                    <button class="btn btn-dark" onclick="next('investigacao')">>></button>
+                <div class="card text-bg-dark border-white">
+                    <h5 class="card-header border-white"> I. Fase do Mythos </h5>
+                    <div class="btn-group " role="group">
+                        <button type="button" class="btn btn-dark" onclick="next('manutencao')"><<</button>
+                        <button type="button" class="btn btn-dark" onclick="next('investigacao')">>></button>
+                    </div>
                     <div class="card-body">
                         <div class="card-text">
                             <ul class="list-group">
@@ -42,9 +48,11 @@
             </div>
             <div id="investigacao">
                 <div class="card text-bg-dark border-light">
-                    <h5 class="card-header"> II. Fase de investigação </h5>
-                    <button class="btn btn-dark" onclick="next('mythos')"><<</button>
-                    <button class="btn btn-dark" onclick="next('inimigos')"> >></button>
+                    <h5 class="card-header border-white"> II. Fase de investigação </h5>
+                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                        <button type="button" class="btn btn-dark" onclick="next('mythos')"><<</button>
+                        <button type="button" class="btn btn-dark" onclick="next('inimigos')">>></button>
+                    </div>
                     <div class="card-body">
                         <div class="card-text">
                             <ul class="list-group">
@@ -53,29 +61,33 @@
                                     <label class="form-check-label stretched-link" for="invetigador-check">1. Cada investigador joga um turno, realizando 3 ações</label>
                                 </li>
                             </ul>
+                            <div class="card-footer">
                             <p class="mt-2">
                                 As ações que podem ser realizadas são:
                             <ul>
                                 <li>Comprar 1 <strong>carta</strong> ou ganhar 1 <strong>recurso</strong></li>
                                 <li><strong>Jogar</strong> uma carta de evento ou de ativo da mão (cartas velozes não custam ações para ser jogadas)</li>
-                                <li><strong>Ativar</strong> uma habilidade (símbolo >>) de uma carta</li>
+                                <li><strong>Ativar</strong> uma habilidade <img src="contents/action.png" class="bg-white rounded-1" width="30" height="20"> de uma carta</li>
                                 <li><strong>Mover-se</strong> para um local conectado</li>
                                 <li><strong>Lutar</strong> ou engajar com um inimigo em seu local</li>
                                 <li>Tentar <strong>evadir</strong> um inimigo engajado com você</li>
                             </ul>
 
-                            Habilidades de carta (simbolo raio) ou (simbolo uma volta) <strong>não custam ações</strong> para serem ativadas<br>
+                            Habilidades de carta <img src="contents/free.png" class="bg-white rounded-1" width="30" height="20"> ou <img src="contents/reaction.png" class="bg-white rounded-1" width="30" height="20"> <strong>não custam ações</strong> para serem ativadas<br>
                             <br><p>Se você estiver engajado com um inimigo e gastar uma ação para fazer qualquer coisa diferente de <strong>Lutar</strong>, <strong>Evadir</strong>, ou ativar uma habilidade de <strong>Negociata</strong>, ou de <strong>Renúncia</strong>, cada inimigo engajado com você realiza um ataque de oportunidade</p>
                             </p>
+                        </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div id="inimigos">
                 <div class="card text-bg-dark border-light">
-                    <h5 class="card-header"> III. Fase dos inimigos </h5>
-                    <button class="btn btn-dark" onclick="next('investigacao')"><<</button>
-                    <button class="btn btn-dark" onclick="next('manutencao')"> >></button>
+                    <h5 class="card-header border-white"> III. Fase dos inimigos </h5>
+                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                        <button type="button" class="btn btn-dark" onclick="next('investigacao')"><<</button>
+                        <button type="button" class="btn btn-dark" onclick="next('manutencao')">>></button>
+                    </div>
                     <div class="card-body">
                         <div class="card-text">
                             <ul class="list-group">
@@ -94,9 +106,11 @@
             </div>
             <div id="manutencao">
                 <div class="card text-bg-dark border-light">
-                    <h5 class="card-header"> IV. Fase de manutenção </h5>
-                    <button class="btn btn-dark" onclick="next('inimigos')"><<</button>
-                    <button class="btn btn-dark" onclick="next('mythos')"> >></button>
+                    <h5 class="card-header border-white"> IV. Fase de manutenção </h5>
+                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                        <button type="button" class="btn btn-dark" onclick="next('inimigos')"><<</button>
+                        <button type="button" class="btn btn-dark" onclick="next('mythos')">>></button>
+                    </div>
                     <div class="card-body">
                         <div class="card-text">
                             <ul class="list-group">
@@ -125,16 +139,16 @@
         </div>
     <div class="row">
         <div class="col">
-            <div id="my-pdf"></div>
+            <div id="pdf"></div>
         </div>
     </div>
 </div>
 
 
 <script src="https://unpkg.com/pdfobject"></script>
-<script>PDFObject.embed("contents/reference-indice.pdf", "#my-pdf");</script>
 <script src="js/bootstrap.min.js"></script>
 <script>
+    PDFObject.embed("contents/references.pdf", "#pdf");
 
     elements = [
         document.getElementById("mythos"),
@@ -146,6 +160,7 @@
     function next(elementName){
         let element = document.getElementById(elementName);
         show(element);
+        removeChecked();
     }
     function show(element){
         elements.forEach(function(element){
@@ -155,6 +170,12 @@
     }
     function hide(element){
         element.classList.add("d-none");
+    }
+
+    function removeChecked() {
+        document.querySelectorAll("input[type=checkbox]").forEach(function (element) {
+            element.checked = false;
+        })
     }
 
     document.addEventListener("DOMContentLoaded", function() {
