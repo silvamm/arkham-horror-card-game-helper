@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Arkham Horror - Helper</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <style>
-    .pdfobject-container { height: 1000px;}
+    .pdfobject-container { width:100%; height: 500px;}
     .btn-group {
         margin-bottom: 1rem;
         margin-top: 1rem;
@@ -14,11 +15,12 @@
 </style>
 <body class="bg-dark">
 <div class="container">
-    <div class="row mt-5 mb-5">
+
+    <div class="row mt-2 mb-5">
         <div class="col">
             <div id="mythos">
                 <div class="card text-bg-dark border-white">
-                    <h5 class="card-header border-white"> I. Fase do Mythos </h5>
+                    <h5 class="card-header border-white">I. Fase do Mythos </h5>
                     <div class="btn-group " role="group">
                         <button type="button" class="btn btn-dark" onclick="next('manutencao')"><<</button>
                         <button type="button" class="btn btn-dark" onclick="next('investigacao')">>></button>
@@ -26,15 +28,15 @@
                     <div class="card-body">
                         <div class="card-text">
                             <ul class="list-group">
-                                <li class="list-group-item">
+                                <li class="list-group-item d-flex align-items-center gap-2">
                                     <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckboxStretched">
                                     <label class="form-check-label stretched-link" for="firstCheckboxStretched">1. Coloque 1 perdição sobre a agenda</label>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item d-flex align-items-center gap-2">
                                     <input class="form-check-input me-1" type="checkbox" value="" id="secondCheckboxStretched">
                                     <label class="form-check-label stretched-link" for="secondCheckboxStretched">2. Avance a agenda se o limiar de perdição for atingido</label>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item d-flex align-items-center gap-2">
                                     <input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckboxStretched">
                                     <label class="form-check-label stretched-link" for="thirdCheckboxStretched">3. Cada investigador compra 1 carta do topo do baralho de encontros</label>
                                 </li>
@@ -48,7 +50,7 @@
             </div>
             <div id="investigacao">
                 <div class="card text-bg-dark border-light">
-                    <h5 class="card-header border-white"> II. Fase de investigação </h5>
+                    <h5 class="card-header border-white">II. Fase de investigação </h5>
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
                         <button type="button" class="btn btn-dark" onclick="next('mythos')"><<</button>
                         <button type="button" class="btn btn-dark" onclick="next('inimigos')">>></button>
@@ -57,20 +59,19 @@
                         <div class="card-text">
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="" id="invetigador-check">
-                                    <label class="form-check-label stretched-link" for="invetigador-check">1. Cada investigador joga um turno, realizando 3 ações</label>
+                                    <label class="form-check-label stretched-link">1. Cada investigador joga um turno, realizando 3 ações</label>
                                 </li>
                             </ul>
                             <div class="card-footer">
                             <p class="mt-2">
                                 As ações que podem ser realizadas são:
                             <ul>
-                                <li>Comprar 1 <strong>carta</strong> ou ganhar 1 <strong>recurso</strong></li>
-                                <li><strong>Jogar</strong> uma carta de evento ou de ativo da mão (cartas velozes não custam ações para ser jogadas)</li>
-                                <li><strong>Ativar</strong> uma habilidade <img src="contents/action.png" class="bg-white rounded-1" width="30" height="20"> de uma carta</li>
-                                <li><strong>Mover-se</strong> para um local conectado</li>
-                                <li><strong>Lutar</strong> ou engajar com um inimigo em seu local</li>
-                                <li>Tentar <strong>evadir</strong> um inimigo engajado com você</li>
+                                <li class="mb-1">Comprar <button id="btn-carta" class="btn btn-light" onclick="actionMark('btn-carta')">1 carta</button> ou ganhar <button id="btn-recurso" class="btn btn-light" onclick="actionMark('btn-recurso')">1 recurso</button></li>
+                                <li class="mb-1"><button id="btn-jogar" class="btn btn-light" onclick="actionMark('btn-jogar')">Jogar</button> uma carta de evento ou de ativo da mão (cartas velozes não custam ações para ser jogadas)</li>
+                                <li class="mb-1"><button id="btn-ativar" class="btn btn-light" onclick="actionMark('btn-ativar')">Ativar</button> uma habilidade <img src="contents/action.png" class="bg-white rounded-1" width="30" height="20"> de uma carta</li>
+                                <li class="mb-1"><button id="btn-mover" class="btn btn-light" onclick="actionMark('btn-mover')">Mover-se</span></button> para um local conectado</li>
+                                <li class="mb-1"><button id="btn-lutar" class="btn btn-light" onclick="actionMark('btn-lutar')">Lutar</button> ou engajar com um inimigo em seu local</li>
+                                <li class="mb-1">Tentar <button id="btn-evadir" class="btn btn-light" onclick="actionMark('btn-evadir')">evadir</button> um inimigo engajado com você</li>
                             </ul>
 
                             Habilidades de carta <img src="contents/free.png" class="bg-white rounded-1" width="30" height="20"> ou <img src="contents/reaction.png" class="bg-white rounded-1" width="30" height="20"> <strong>não custam ações</strong> para serem ativadas<br>
@@ -83,7 +84,7 @@
             </div>
             <div id="inimigos">
                 <div class="card text-bg-dark border-light">
-                    <h5 class="card-header border-white"> III. Fase dos inimigos </h5>
+                    <h5 class="card-header border-white">III. Fase dos inimigos </h5>
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
                         <button type="button" class="btn btn-dark" onclick="next('investigacao')"><<</button>
                         <button type="button" class="btn btn-dark" onclick="next('manutencao')">>></button>
@@ -91,13 +92,13 @@
                     <div class="card-body">
                         <div class="card-text">
                             <ul class="list-group">
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="" id="inimigos-check">
-                                    <label class="form-check-label stretched-link" for="inimigos-check">1. Inimigos com a palavra-chave "Caçador" se movem em direção ao investigador mais próximo</label>
+                                <li class="list-group-item d-flex align-items-center gap-2">
+                                        <input class="form-check-input me-1 " type="checkbox" value="" id="inimigos-check">
+                                        <label class="form-check-label stretched-link" for="inimigos-check"> 1. Inimigos com a palavra-chave "Caçador" se movem em direção ao investigador mais próximo</label>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item d-flex align-items-center gap-2">
                                     <input class="form-check-input me-1" type="checkbox" value="" id="inimigos-check-2">
-                                    <label class="form-check-label stretched-link" for="inimigos-check-2">2. Cada inimigo engajado ataca, se possivel</label>
+                                    <label class="form-check-label stretched-link" for="inimigos-check-2"> 2. Cada inimigo engajado ataca, se possivel</label>
                                 </li>
                             </ul>
                         </div>
@@ -106,7 +107,7 @@
             </div>
             <div id="manutencao">
                 <div class="card text-bg-dark border-light">
-                    <h5 class="card-header border-white"> IV. Fase de manutenção </h5>
+                    <h5 class="card-header border-white">IV. Fase de manutenção </h5>
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
                         <button type="button" class="btn btn-dark" onclick="next('inimigos')"><<</button>
                         <button type="button" class="btn btn-dark" onclick="next('mythos')">>></button>
@@ -114,19 +115,19 @@
                     <div class="card-body">
                         <div class="card-text">
                             <ul class="list-group">
-                                <li class="list-group-item">
+                                <li class="list-group-item d-flex align-items-center gap-2">
                                     <input class="form-check-input me-1" type="checkbox" value="" id="manutencao-check">
                                     <label class="form-check-label stretched-link" for="manutencao-check">1. Reinicie as ações (vire as mini cartas)</label>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item d-flex align-items-center gap-2">
                                     <input class="form-check-input me-1" type="checkbox" value="" id="manutencao-check-2">
                                     <label class="form-check-label stretched-link" for="manutencao-check-2">2. Prepare todas as cartas esgotadas</label>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item d-flex align-items-center gap-2">
                                     <input class="form-check-input me-1" type="checkbox" value="" id="manutencao-check-3">
                                     <label class="form-check-label stretched-link" for="manutencao-check-3">3. Cada investigador compra 1 carta e ganha 1 recurso</label>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item d-flex align-items-center gap-2">
                                     <input class="form-check-input me-1" type="checkbox" value="" id="manutencao-check-4">
                                     <label class="form-check-label stretched-link" for="manutencao-check-4">4. Cada investigador verifica o tamanho da mão ( descarta até ficar com 8 cartas)</label>
                                 </li>
@@ -137,18 +138,49 @@
             </div>
         </div>
         </div>
-    <div class="row">
+    <div class="row text-center mt-2">
         <div class="col">
-            <div id="pdf"></div>
+            <a class="btn btn-dark" href="contents/references.pdf#page=32&navpanes=1" target="_blank">Referências</a>
         </div>
     </div>
 </div>
 
-
-<script src="https://unpkg.com/pdfobject"></script>
 <script src="js/bootstrap.min.js"></script>
 <script>
-    PDFObject.embed("contents/references.pdf", "#pdf");
+
+    let actionMarkNumber = 1
+    function actionMark(elementName){
+        let btn = document.getElementById(elementName);
+
+        if (actionMarkNumber > 3) {
+            clearActionMarks()
+            actionMarkNumber = 1
+            return;
+        }
+
+        createMark(btn)
+        actionMarkNumber++
+    }
+
+    function createMark(elementButton){
+        let newSpan = document.createElement("span");
+        newSpan.className = "action-mark badge text-bg-secondary ms-1";
+        newSpan.textContent = String(actionMarkNumber);
+        elementButton.appendChild(newSpan);
+    }
+
+    function clearActionMarks(){
+        let elements = document.querySelectorAll(".action-mark")
+        elements.forEach(function (element) {
+            element.remove()
+        })
+    }
+
+    function next(elementName){
+        let element = document.getElementById(elementName);
+        show(element);
+        removeChecked();
+    }
 
     elements = [
         document.getElementById("mythos"),
@@ -157,11 +189,6 @@
         document.getElementById("manutencao")
     ];
 
-    function next(elementName){
-        let element = document.getElementById(elementName);
-        show(element);
-        removeChecked();
-    }
     function show(element){
         elements.forEach(function(element){
             hide(element)
