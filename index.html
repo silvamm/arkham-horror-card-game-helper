@@ -66,12 +66,13 @@
                             <p class="mt-2">
                                 As ações que podem ser realizadas são:
                             <ul>
+                                <li class="mb-1"><button id="btn-investigar" class="btn btn-light" onclick="actionMark('btn-investigar')">Investigar</button> um local</li>
                                 <li class="mb-1">Comprar <button id="btn-carta" class="btn btn-light" onclick="actionMark('btn-carta')">1 carta</button> ou ganhar <button id="btn-recurso" class="btn btn-light" onclick="actionMark('btn-recurso')">1 recurso</button></li>
                                 <li class="mb-1"><button id="btn-jogar" class="btn btn-light" onclick="actionMark('btn-jogar')">Jogar</button> uma carta de evento ou de ativo da mão (cartas velozes não custam ações para ser jogadas)</li>
                                 <li class="mb-1"><button id="btn-ativar" class="btn btn-light" onclick="actionMark('btn-ativar')">Ativar</button> uma habilidade <img src="contents/action.png" class="bg-white rounded-1" width="30" height="20"> de uma carta</li>
                                 <li class="mb-1"><button id="btn-mover" class="btn btn-light" onclick="actionMark('btn-mover')">Mover-se</span></button> para um local conectado</li>
                                 <li class="mb-1"><button id="btn-lutar" class="btn btn-light" onclick="actionMark('btn-lutar')">Lutar</button> ou engajar com um inimigo em seu local</li>
-                                <li class="mb-1">Tentar <button id="btn-evadir" class="btn btn-light" onclick="actionMark('btn-evadir')">evadir</button> um inimigo engajado com você</li>
+                                <li class="mb-1">Tentar <button id="btn-evadir" class="btn btn-light" onclick="actionMark('btn-evadir')">Evadir</button> um inimigo engajado com você</li>
                             </ul>
 
                             Habilidades de carta <img src="contents/free.png" class="bg-white rounded-1" width="30" height="20"> ou <img src="contents/reaction.png" class="bg-white rounded-1" width="30" height="20"> <strong>não custam ações</strong> para serem ativadas<br>
@@ -154,7 +155,6 @@
 
         if (actionMarkNumber > 3) {
             clearActionMarks()
-            actionMarkNumber = 1
             return;
         }
 
@@ -174,12 +174,14 @@
         elements.forEach(function (element) {
             element.remove()
         })
+        actionMarkNumber = 1
     }
 
     function next(elementName){
         let element = document.getElementById(elementName);
         show(element);
         removeChecked();
+        clearActionMarks();
     }
 
     elements = [
